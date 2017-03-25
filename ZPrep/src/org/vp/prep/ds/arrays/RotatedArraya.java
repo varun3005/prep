@@ -1,4 +1,4 @@
-package org.vp.prep.dp.arrays;
+package org.vp.prep.ds.arrays;
 
 public class RotatedArraya {
 

@@ -24,7 +24,7 @@ public class ReentrantLockEx {
 
 		executor.submit(() -> {
 		    System.out.println("Locked: " + lock.isLocked());
-//		    lock.lock(); //Block till lock is acquired
+		    lock.lock(); //Block till lock is acquired
 		    System.out.println("Held by me: " + lock.isHeldByCurrentThread());
 		    boolean locked = lock.tryLock();
 		    System.out.println("Lock acquired: " + locked);

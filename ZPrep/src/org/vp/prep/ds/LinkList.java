@@ -1,5 +1,7 @@
 package org.vp.prep.ds;
 
+import java.util.Stack;
+
 /**
  * 
  * @author vpathak
@@ -174,10 +176,58 @@ class LinkList {
 		}
 		return head;
 	}
+	
+	/**
+	 * 
+	 * @param a
+	 * @param k
+	 * @return
+	 * 
+	 * simply change node values, no links altered
+	 * Uses O(k) extra memory, tn = O(n)
+	 * 
+	 */
+	public Node revKNodes(Node a, int k){
+		if(a==null){
+			return a;
+		}
+		Stack<Integer> stack = new Stack<Integer>();
+		Node b = a;
+		while(a!=null){
+			while(k>0 && a!=null){
+				stack.push(a.info);
+				k--;
+				a = a.next;
+			}
+			while(b!=a){
+				b.info = stack.pop();
+				k++;
+				b = b.next;
+			}
+			
+		}
+		return a;
+	}
+	
+	/*
+	 *  No extra memory used 
+	 */
+//	public Node revKNodes2(Node a, int k){ //Uses k extra memory
+//		if(a==null){
+//			return a;
+//		}
+//		while(a!=null && )
+//		
+//		return a;
+//	}
 
 	public static void main(String args[]) {
 		LinkList ll = new LinkList();
-		ll.addMultiNode(new int[] { 1, 5, 7, 9, 11, 13 });
+		ll.addMultiNode(new int[] { 1, 5, 7, 9, 11, 13,14,15 });
+		ll.display(ll.head);
+		System.out.println();
+		
+		ll.revKNodes(ll.head, 3);
 		ll.display(ll.head);
 		System.out.println();
 		// Node cpy = ll.createCopy(ll.head);
@@ -185,6 +235,8 @@ class LinkList {
 
 		Node tail = ll.reverseRec(ll.head);
 		ll.display(tail);
+		
+		
 		// LinkList l2 = new LinkList();
 		// l2.addMultiNode(new int[]{0,2,6,10,14,15});
 		// l2.display(l2.head);System.out.println();

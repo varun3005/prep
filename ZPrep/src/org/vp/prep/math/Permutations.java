@@ -12,9 +12,8 @@ import java.util.Arrays;
 public class Permutations {
 	
 	public static void main(String[] args) {
-		String str = "ABC";
-		int n = str.length();
-		char[] arr = str.toCharArray();
+		char[] arr = new char[]{'A', 'B', 'C'};
+		int n = arr.length;
 		boolean[] visited = new boolean[n];
 		char[] branch = new char[n];
 		Permutations p = new Permutations();

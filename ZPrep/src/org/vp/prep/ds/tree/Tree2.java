@@ -65,8 +65,11 @@ public class Tree2 implements Serializable{
 			return;
 		}else{
 			nodeWithoutSiblings(n.left, nodes);
-			if((n.left== null && n.right!=null) || (n.left!= null && n.right==null)){
-				 nodes.add(n);
+			if(n.left== null && n.right!=null){
+				 nodes.add(n.right);
+			}
+			if(n.left!= null && n.right==null){
+				 nodes.add(n.left);
 			}
 			nodeWithoutSiblings(n.right, nodes);
 		}
@@ -139,8 +142,40 @@ public class Tree2 implements Serializable{
 		return new HW(height, width);
 	}
 	
+	public void updateNodeInfo(Node a, int current, int newVal) {
+		if (a == null) {
+			return;
+		}
+		if (a.data == current) {
+			a.data = newVal;
+			return;
+		}
+		if (current < a.data) {
+			updateNodeInfo(a.left, current, newVal);
+		} else {
+			updateNodeInfo(a.right, current, newVal);
+		}
+	}
+	
+	boolean isBsT(Node node, int min, int max) {
+		/* an empty tree is BST */
+		if (node == null)
+			return true;
+
+		/* false if this node violates the min/max constraints */
+		if (node.data < min || node.data > max)
+			return false;
+
+		/*
+		 * otherwise check the subtrees recursively tightening the min/max
+		 * constraints
+		 */
+		// Allow only distinct values
+		return (isBsT(node.left, min, node.data - 1) && isBsT(node.right, node.data + 1, max));
+	}
 		
 	public static void main (String args[]){
+		System.out.println("Test");
 		Tree2 tree = new Tree2();
 		tree.insertMulti(new int[]{5,3,4,2,9,6,7,11});
 //		5
@@ -154,5 +189,8 @@ public class Tree2 implements Serializable{
 		tree.nodeWithoutSiblings(tree.root,nodes);
 		System.out.println("Nodes wihtout sibling : "+nodes);
 		System.out.println(tree.treeWidth(tree.root));
+		tree.updateNodeInfo(tree.root, 7, 50);
+		tree.inorder(tree.root);
+		System.out.println("\nIsBst:"+tree.isBsT(tree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 	}
 }

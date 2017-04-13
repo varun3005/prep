@@ -4,7 +4,7 @@ public class Parenthesis {
 	static int a = 0;
 
 	public static void main(String[] args) {
-		int parenNum = 5;
+		int parenNum = 3;
 		char str[] = new char[2*parenNum];
 		printPar(parenNum, parenNum, str, 0);
 	}
@@ -19,7 +19,7 @@ public class Parenthesis {
 				str[count] = '(';
 				printPar(l - 1, r, str, count + 1);
 			}
-			if (r > l) { // try a right paren, if there�s a matching left
+			if (r > l) { // try a right paren, if there's a matching left
 				str[count] = ')';
 				printPar(l, r - 1, str, count + 1);
 			}

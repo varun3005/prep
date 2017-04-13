@@ -23,7 +23,7 @@ class MyThread1DL extends Thread {
 		while (true) {
 			synchronized (s1) {
 				synchronized (s2) {
-					System.out.println(s1 + s2);
+					System.out.println(Thread.currentThread().getName()+"-"+s1 + s2);
 				}
 			}
 		}

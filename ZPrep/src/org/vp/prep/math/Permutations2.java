@@ -49,7 +49,7 @@ public class Permutations2 {
 
 	public static void main(String[] args) {
 		String alphabet = "abc";
-		String elements = alphabet.substring(0, 3);
-		perm1(elements);
+//		String elements = alphabet.substring(0, 3);
+		perm1(alphabet);
 	}
 }

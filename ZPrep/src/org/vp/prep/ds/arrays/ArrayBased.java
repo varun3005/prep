@@ -17,8 +17,8 @@ public class ArrayBased {
 		char[]a = new char[]{'a','b','c'};
 //		System.out.println("\n Permutations / Anagrams");
 		ab.permute(a,3);
-//		System.out.println("\n Combinations");
-//		ab.genCombinations(a);
+		System.out.println("\n Combinations");
+		ab.genCombinations(a);
 		
 //		int a[] = new int[]{4,3,1,7,10,8,14,1,6,8};
 //		System.out.println("\nMaxSubsum="+ab.maxAlternateSubArray(a));
@@ -126,16 +126,16 @@ public class ArrayBased {
 	}
 
 	public String getBinary(int a,int n){
-		String result="";
+		StringBuilder result= new StringBuilder();
 		while(a>0){
-			result =result+a%2;
+			result.append(+a%2);
 			a=a/2;
 		}
 		for(int i=result.length();i<n;i++){
-			result+="0";
+			result.append("0");
 		}
 		//result = result.
-		return new StringBuffer(result).reverse().toString();
+		return result.reverse().toString();
 	}
 	
 	

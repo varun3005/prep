@@ -201,7 +201,6 @@ class LinkList {
 			}
 			while(b!=a){
 				b.info = stack.pop();
-				k++;
 				b = b.next;
 			}
 			

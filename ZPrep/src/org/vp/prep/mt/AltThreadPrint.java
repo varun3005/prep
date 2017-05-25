@@ -13,7 +13,7 @@ class AltTread implements Runnable{
 	
 	@Override
 	public void run() {
-		while(true && currentThreadIndex<nums.length){
+		while(currentThreadIndex<nums.length){
 			synchronized(lock){
 				int current=-1;
 				try{current = Integer.parseInt(Thread.currentThread().getName());

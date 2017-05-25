@@ -17,26 +17,26 @@ public class Permutations {
 		boolean[] visited = new boolean[n];
 		char[] branch = new char[n];
 		Permutations p = new Permutations();
-		p.generatePermutations(arr, n, branch, -1, visited);
+		p.generatePermutations(arr, branch, -1, visited);
 		
 		System.out.println("\n Generating all combinations - Power set");
-		for (int i = 0; i < arr.length; ++i)
+		for (int i = 1; i <= arr.length; ++i)
 	    {
 	        branch = new char[i];
 	        p.combine(arr, i, 0, branch, 0);
 	    }   
 	}
 
-	void generatePermutations(char[] arr, int size, char[] branch, int level, boolean[] visited) {
-		if (level >= size - 1) {
+	void generatePermutations(char[] arr, char[] branch, int level, boolean[] visited) {
+		if (level >= arr.length - 1) {
 			System.out.println(branch);
 			return;
 		}
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			if (!visited[i]) {
 				branch[++level] = arr[i];
 				visited[i] = true;
-				generatePermutations(arr, size, branch, level, visited);
+				generatePermutations(arr,  branch, level, visited);
 				visited[i] = false;
 				level--;
 			}

@@ -1,13 +1,13 @@
 package org.vp.prep.misc;
 
 public class NQueen {
-	final int numQueen = 8;
-	int board[][] = new int[numQueen][numQueen];
+	static final int NUM_QUEEN = 8;
+	int board[][] = new int[NUM_QUEEN][NUM_QUEEN];
 
 	public void display() {
-		for (int i = 0; i < numQueen; i++) {
+		for (int i = 0; i < NUM_QUEEN; i++) {
 			System.out.print("");
-			for (int j = 0; j < numQueen; j++) {
+			for (int j = 0; j < NUM_QUEEN; j++) {
 				System.out.print(board[i][j] + "|");
 			}
 			System.out.println();
@@ -15,11 +15,9 @@ public class NQueen {
 	}
 
 	public void scanAndPlaceQueen(int row, int col) {
-		if (row == numQueen) {
-			if (col == 0) {
-				display();
-				System.out.println("\n---------");
-			}
+		if (row == NUM_QUEEN) {
+			display();
+			System.out.println("\n---------");
 			return;
 		}
 
@@ -38,22 +36,22 @@ public class NQueen {
 
 		i = row;
 		j = col;
-		do { // top left to middle diagnal check
+		do { // top left to middle diagonal check
 			if (board[i--][j--] == 1) {
 				return;
 			}
 		} while (i > -1 && j > -1);
 
 		i = row;
-		j = col; // top right to middle diagnal check
-		do {// System.out.println(i+" - "+j);
+		j = col; // top right to middle diagonal check
+		do {
 			if (board[i--][j++] == 1) {
 				return;
 			}
-		} while (i > -1 && j < numQueen - 1);
+		} while (i > -1 && j < NUM_QUEEN - 1);
 
 		board[row][col] = 1;
-		for (j = 0; j < numQueen; j++) {
+		for (j = 0; j < NUM_QUEEN; j++) {
 			scanAndPlaceQueen((row + 1), j);
 		}
 		board[row][col] = 0; // Rollback
@@ -62,11 +60,11 @@ public class NQueen {
 
 	public static void main(String args[]) {
 		NQueen q = new NQueen();
-		if (q.numQueen < 4) {
+		if (q.NUM_QUEEN < 4) {
 			System.out.println("No Solution..!!");
 			return;
 		}
-		for (int i = 0; i < q.numQueen; i++) {
+		for (int i = 0; i < q.NUM_QUEEN; i++) {
 			q.scanAndPlaceQueen(0, i);
 		}
 	}

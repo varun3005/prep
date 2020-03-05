@@ -4,16 +4,12 @@ import java.util.Stack;
 
 /**
  * 
- * @author vpathak
- * Linked list problems
- * 1) Add node at tail
- * 2) Add node at head
- * 3) Reverse linked list iterative
- * 4) Reverse linked list recursive
- * 5) Sorting a linked list using insertion sort
- * 6) Sort merge to sorted linked lists
- * 7) Create copy of linked list
- * 8) TODO - reverse every k nodes in linked list. Eg list = 1,2,3,4,5,6,7,8 and k=3, output= 3,2,1,6,5,4,8,7
+ * @author vpathak Linked list problems 1) Add node at tail 2) Add node at head
+ *         3) Reverse linked list iterative 4) Reverse linked list recursive 5)
+ *         Sorting a linked list using insertion sort 6) Sort merge to sorted
+ *         linked lists 7) Create copy of linked list 8) TODO - reverse every k
+ *         nodes in linked list. Eg list = 1,2,3,4,5,6,7,8 and k=3, output=
+ *         3,2,1,6,5,4,8,7
  */
 
 class LinkList {
@@ -93,9 +89,9 @@ class LinkList {
 
 	public Node reverseRec(Node a) {
 		Node ret = null;
-		if(a.next == null){
+		if (a.next == null) {
 			ret = a;
-		}else{
+		} else {
 			ret = reverseRec(a.next);
 			a.next.next = a;
 			a.next = null;
@@ -121,23 +117,23 @@ class LinkList {
 	public void insertSorted(Node n, int info) {
 		if (n == null) {
 			head = new Node(info);
-		} else {
-			if (info < n.info) {
-				head = new Node(info);
-				head.next = n;
+			return;
+		}
+		if (info < n.info) {
+			head = new Node(info);
+			head.next = n;
+			return;
+		}
+		while (n.next != null) {
+			if (info > n.info && info < n.next.info) {
+				Node tmp = new Node(info);
+				tmp.next = n.next;
+				n.next = tmp;
 				return;
 			}
-			while (n.next != null) {
-				if (info > n.info && info < n.next.info) {
-					Node tmp = new Node(info);
-					tmp.next = n.next;
-					n.next = tmp;
-					return;
-				}
-				n = n.next;
-			}
-			n.next = new Node(info);
+			n = n.next;
 		}
+		n.next = new Node(info);
 	}
 
 	public Node sortMerge(Node n1, Node n2) {
@@ -176,56 +172,42 @@ class LinkList {
 		}
 		return head;
 	}
-	
+
 	/**
 	 * 
 	 * @param a
 	 * @param k
 	 * @return
 	 * 
-	 * simply change node values, no links altered
-	 * Uses O(k) extra memory, tn = O(n)
+	 * 		simply change node values, no links altered Uses O(k) extra memory,
+	 *         tn = O(n)
 	 * 
 	 */
-	public Node revKNodes(Node a, int k){
-		if(a==null){
+	public Node revKNodes(Node a, int k) {
+		if (a == null) {
 			return a;
 		}
 		Stack<Integer> stack = new Stack<Integer>();
 		Node b = a;
-		while(a!=null){
-			while(k>0 && a!=null){
-				stack.push(a.info);
-				k--;
-				a = a.next;
-			}
-			while(b!=a){
-				b.info = stack.pop();
-				b = b.next;
-			}
-			
+		while (k > 0 && a != null) {
+			stack.push(a.info);
+			k--;
+			a = a.next;
 		}
+		while (b != a) {
+			b.info = stack.pop();
+			b = b.next;
+		}
+
 		return a;
 	}
-	
-	/*
-	 *  No extra memory used 
-	 */
-//	public Node revKNodes2(Node a, int k){ //Uses k extra memory
-//		if(a==null){
-//			return a;
-//		}
-//		while(a!=null && )
-//		
-//		return a;
-//	}
 
 	public static void main(String args[]) {
 		LinkList ll = new LinkList();
-		ll.addMultiNode(new int[] { 1, 5, 7, 9, 11, 13,14,15 });
+		ll.addMultiNode(new int[] { 1, 5, 7, 9, 11, 13, 14, 15 });
 		ll.display(ll.head);
 		System.out.println();
-		
+
 		ll.revKNodes(ll.head, 3);
 		ll.display(ll.head);
 		System.out.println();
@@ -234,8 +216,7 @@ class LinkList {
 
 		Node tail = ll.reverseRec(ll.head);
 		ll.display(tail);
-		
-		
+
 		// LinkList l2 = new LinkList();
 		// l2.addMultiNode(new int[]{0,2,6,10,14,15});
 		// l2.display(l2.head);System.out.println();

@@ -110,7 +110,7 @@ public class ArrayBased {
 	//------------------To generate all combinations of char array------------------------
 	public void genCombinations(char[] a){
 		int n = a.length;
-		for(int i=0;i<Math.pow(2, n)-1;i++){
+		for(int i=0;i<Math.pow(2, n);i++){
 			System.out.println(getStringEq(getBinary(i,a.length),a));
 		}
 	}
@@ -118,7 +118,7 @@ public class ArrayBased {
 	private String getStringEq(String binary, char[]a) {
 		String res="";
 		for(int i=0;i<binary.length();i++){
-			if(new StringBuffer(binary).charAt(i)=='1'){
+			if(binary.charAt(i)=='1'){
 				res+=a[i];
 			}
 		}

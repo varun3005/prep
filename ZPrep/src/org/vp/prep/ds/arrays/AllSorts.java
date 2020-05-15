@@ -10,8 +10,8 @@ public class AllSorts {
 //		sort.bubble(a);
 //		sort.insertion(a);
 //		sort.selection(a);
-//		sort.quick(a, 0, a.length-1);
-		sort.heapSort(a);
+		sort.quick(a, 0, a.length-1);
+//		sort.heapSort(a);
 		sort.display(a);
 	}
 	
@@ -62,17 +62,23 @@ public class AllSorts {
 		}
 	}
 	
-	public int partition(int a[],int p,int r){
-		int x = a[r];
+	public int partition(int[] arr,int p,int r){
+		int x = arr[r];
 		int i = p-1;
 		for(int j=p;j<r;j++){
-			if(a[j]<=x){
+			if(arr[j]<=x){
 				i++;
-				int temp = a[i];a[i]=a[j];a[j]=temp;
+				swap(arr,i,j);
 			}
 		}
-		int temp = a[i+1];a[i+1]=a[r];a[r]=temp;
+		swap(arr, i+1,r);
 		return i+1;
+	}
+	
+	private void swap(int[] a, int i, int j){
+		int temp = a[i];
+		a[i]=a[j];
+		a[j]=temp;
 	}
 	//---------- Quick Sort End ----------------//
 	

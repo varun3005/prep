@@ -85,10 +85,7 @@ public class ArrayBased {
 		if(sum>9){
 			isDivBy3(sum);
 		}
-		if(sum==3||sum==6||sum==9){
-			return true;
-		}
-		return false;
+		return (sum==3||sum==6||sum==9);
 	}
 
 	
@@ -99,11 +96,7 @@ public class ArrayBased {
 			setBits+=a&1;
 			a=a>>1;
 		}
-		System.out.println("Set Bits:"+setBits);
-		if(setBits==1){
-			return true;
-		}
-		return false;
+		return (setBits==1);
 	}
 
 	

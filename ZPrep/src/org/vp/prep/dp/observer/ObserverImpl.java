@@ -3,7 +3,7 @@ package org.vp.prep.dp.observer;
 public class ObserverImpl implements Observer{
 
 	private String id;
-	private Subject subject;
+	private Topic topic;
 	
 	public ObserverImpl(String id) {
 		super();
@@ -11,8 +11,8 @@ public class ObserverImpl implements Observer{
 	}
 
 	@Override
-	public void getUpdate(Subject s) {
-		System.out.println("Recieved update on "+this.id+" for subject:"+s);
+	public void getUpdate(Topic topic) {
+		System.out.println("Recieved update on "+this.id+" for topic:"+topic);
 	}
 
 	public String getId() {
@@ -23,12 +23,12 @@ public class ObserverImpl implements Observer{
 		this.id = id;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 	
 }

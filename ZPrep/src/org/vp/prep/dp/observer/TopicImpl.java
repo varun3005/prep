@@ -3,49 +3,42 @@ package org.vp.prep.dp.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectImpl implements Subject{
-	
+public class TopicImpl implements Topic {
+
 	private String id;
 	private String message;
 	private boolean isChanged;
 	private List<Observer> observers;
-	private final Object mutex = new Object();
 
-	public SubjectImpl(String id) {
+	public TopicImpl(String id) {
 		super();
 		this.id = id;
 		observers = new ArrayList<>();
 	}
 
 	@Override
-	public void subsribe(Observer o) {
-		if(!observers.contains(o)){
-			synchronized (mutex) {
-				observers.add(o);
-			}
+	public synchronized void subsribe(Observer o) {
+		if (!observers.contains(o)) {
+			observers.add(o);
 		}
 	}
 
 	@Override
-	public void unsubsribe(Observer o) {
-		if(observers.contains(o)){
-			synchronized (mutex) {
-				observers.remove(o);
-			}
+	public synchronized void unsubsribe(Observer o) {
+		if (observers.contains(o)) {
+			observers.remove(o);
 		}
 	}
 
 	@Override
 	public void notifySubsribers() {
-		if(!isChanged){
+		if (!isChanged) {
 			return;
 		}
-		synchronized (mutex) {
-			for(Observer o : observers){
-				o.getUpdate(this);
-			}
+		for (Observer o : observers) {
+			o.getUpdate(this);
 		}
-		
+
 	}
 
 	@Override
@@ -73,7 +66,7 @@ public class SubjectImpl implements Subject{
 
 	@Override
 	public String toString() {
-		return "SubjectImpl [id=" + id + ", message=" + message + "]";
+		return "TopicImpl [id=" + id + ", message=" + message + "]";
 	}
-	
+
 }

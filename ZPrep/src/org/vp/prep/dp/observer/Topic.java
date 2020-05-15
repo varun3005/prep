@@ -1,6 +1,6 @@
 package org.vp.prep.dp.observer;
 
-public interface Subject {
+public interface Topic {
 
 	public void subsribe(Observer o);
 	public void unsubsribe(Observer o);

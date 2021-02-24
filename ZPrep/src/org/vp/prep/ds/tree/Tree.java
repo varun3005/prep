@@ -49,32 +49,32 @@ public class Tree implements Serializable{
 		}
 	}
 	
+	
 	public void insertMulti(int[] array){
 		for(int i =0;i<array.length;i++){
 			insert(array[i]);
 		}
 	}
 	
-	public void inorder(Node n){
-		if(n == null){
+	public void inorder(Node n) {
+		if (n == null) {
 			return;
-		}else{
-			inorder(n.left);
-			System.out.print(+n.data+",");
-			inorder(n.right);
 		}
+		inorder(n.left);
+		System.out.print(+n.data + ",");
+		inorder(n.right);
 	}
 	
-	public void mirror(Node n){				// Transform tree into its mirror image
-		if(n!=null){
-			mirror(n.left);
-			mirror(n.right);
-			Node tmp = n.left;
-			n.left = n.right;
-			n.right = tmp;
+	public void mirror(Node n) { // Transform tree into its mirror image
+		if (n == null) {
+			return;
 		}
+		mirror(n.left);
+		mirror(n.right);
+		Node tmp = n.left;
+		n.left = n.right;
+		n.right = tmp;
 	}
-	
 	
 	
 	public boolean search(Node n,int key){		// Search for a node in tree
@@ -249,9 +249,9 @@ public class Tree implements Serializable{
 //					  2	  4	  6	  11
 //		 					   7	
 //		tree.printBfs();
-//		tree.inorder(tree.root);System.out.println();
+		tree.inorder(tree.root);System.out.println();
 //		System.out.println("\n"+tree.search(tree.root, 8));
-//		tree.mirror(tree.root);tree.inorder(tree.root);
+		tree.mirror(tree.root);
 		tree.inorder(tree.root);
 		System.out.println();
 		tree.findNthNode(tree.root, new IntHolder(2));
